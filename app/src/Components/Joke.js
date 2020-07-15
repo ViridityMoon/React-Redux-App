@@ -20,10 +20,19 @@ const Joke = props => {
     console.log(props);
     return (
         <div className="Joke">
-            <h1>Click the button for a randome joke!</h1>
+
+            {props.isLoading && <h4>Loading mission data...</h4>}
+
+            {props.error && (
+            <p className="error">Error Message: {props.error}</p>
+            )};
+
+            <h1>Click the button for a random joke!</h1>
             <h2>{props.data.setup}</h2>
+
             <button onClick={onClickFeature}></button>
             {props.active ? <Punchline/> : null}
+            
         </div>
     );
 };
