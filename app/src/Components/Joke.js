@@ -6,7 +6,7 @@ import { fetchJokes, toggleActive } from '../actions/actions';
 import Punchline from './Punchline';
 
 
-const Joke = (props) => {
+const Joke = props => {
     
     useEffect(() => {
         props.fetchJokes();
@@ -20,7 +20,8 @@ const Joke = (props) => {
     console.log(props);
     return (
         <div className="Joke">
-            <h1>Joke</h1>
+            <h1>Click the button for a randome joke!</h1>
+            <h2>{props.data.setup}</h2>
             <button onClick={onClickFeature}></button>
             {props.active ? <Punchline/> : null}
         </div>
@@ -29,12 +30,14 @@ const Joke = (props) => {
 
 const mapStateToProps = state => {
     return {
+        isLoading: state.isLoading,
         active: state.active,
-
+        data: state.data,
+        error: state.error,
     };
 };
 
 export default connect(
     mapStateToProps, 
-    { fetchJokes }
+    { fetchJokes, toggleActive }
 )(Joke);

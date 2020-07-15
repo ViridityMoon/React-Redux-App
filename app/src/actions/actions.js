@@ -14,12 +14,10 @@ export const fetchJokes = () => {
         axios
           .get('https://official-joke-api.appspot.com/random_joke')
           .then(res => {
-              console.log(res);
-              dispatch({ type: FETCH_JOKE_SUCCESS });
+              dispatch({ type: FETCH_JOKE_SUCCESS, payload: res.data});
           })
           .catch(err => {
-              console.log(err);
-              dispatch({ type: FETCH_JOKE_FAILURE });
+              dispatch({ type: FETCH_JOKE_FAILURE, payload: err.data});
           });
     };
 };
